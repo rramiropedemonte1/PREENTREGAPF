@@ -5,5 +5,7 @@ const URI =
 
 await mongoose.connect(URI, {
   serverSelectionTimeoutMS: 5000,
+  useNewUrlParser: true,
+  useUnifiedToPology: true,
 });
 console.log("Base de datos conectada....");

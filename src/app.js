@@ -6,6 +6,9 @@ import viewRouter from "./routes/view.router.js";
 import productRouter from "./routes/products.router.js";
 import cartRouter from "./routes/carts.router.js";
 import cartManager from "./dao/mongomanagers/cartManagerMongo.js";
+import MongoStore from "connect-mongo";
+import session from "express-session";
+import sessionsRouter from "./routes/sessions.js";
 
 const app = express();
 const PORT = 8080;
@@ -21,6 +24,19 @@ app.set("views", __dirname + "/views");
 app.use("/api", productRouter);
 app.use("/api", cartRouter);
 app.use("/", viewRouter);
+app.use("/api/sessions", sessionsRouter);
+
+app.use(
+  session({
+    store: MongoStore.create({
+      mongoUrl: "Tu URL de mongo",
+      ttl: 3600,
+    }),
+    secret: "CoderSecret",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 const httpServer = app.listen(PORT, () => {
   console.log("Server ON");
