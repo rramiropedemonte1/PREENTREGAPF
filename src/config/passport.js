@@ -3,6 +3,7 @@ import passport from "passport";
 import GithubStrategy from "passport-github2";
 import { createHash, validatePassword } from "../utils.js";
 import { userModel } from "../models/users.models.js";
+const jwt = require("passport-jwt");
 
 const LocalStrategy = local.Strategy;
 
@@ -88,6 +89,36 @@ const initializePassport = () => {
           }
         } catch (error) {
           done(error);
+        }
+      }
+    )
+  );
+
+  const cookieExtractor = (req) => {
+    let token = null;
+
+    if (req && req.cookies) {
+      token = req.cookies["coderCookieToken"];
+    }
+
+    return token;
+  };
+
+  const JWTStrategy = jwt.Strategy;
+  const ExtractJWT = jwt.ExtractJwt;
+
+  passport.use(
+    "jwt",
+    new JWTStrategy(
+      {
+        jwtFromRequest: ExtractJWT.fromExtractors([cookieExtractor]),
+        secretOrKey: "coderSecret",
+      },
+      async (jwt_payload, done) => {
+        try {
+          return done(null, jwt_payload);
+        } catch (error) {
+          return done(error);
         }
       }
     )
