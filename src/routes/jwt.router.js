@@ -1,6 +1,6 @@
 import passport from "passport";
 import { passportCallCurrent } from "../utils.js";
-import appRouter from "./router.js";
+import appRouter from "./sessions.js";
 import {
   errorPageController,
   failLoginController,
