@@ -1,26 +1,20 @@
-require("dotenv").config();
+import { config } from "dotenv";
+config();
 
-const config = {
-  port: process.env.PORT,
-  cookie_key: process.env.COOKIE_KEY,
-  secret_key: process.env.SECRET_KEY,
-  github_client_id: process.env.GITHUB_CLIENT_ID,
-  github_secret_key: process.env.GITHUB_SECRET_KEY,
-  github_callback_url: process.env.GITHUB_CALLBACK_URL,
-  jwt_secret: process.env.JWT_SECRET,
-  jwt_expires: process.env.JWT_EXPIRES_IN,
-  jwt_algorithm: process.env.JWT_ALGORITHM,
-  admin_email: process.env.ADMIN_EMAIL,
-  admin_password: process.env.ADMIN_PASSWORD,
-};
+export const PORT = process.env.PORT;
+export const MONGO_URI = process.env.MONGO_URI;
+export const MONGO_DB_NAME = process.env.MONGO_DB_NAME;
 
-const db = {
-  mongo_local: process.env.MONGO_URL_LOCAL,
-  mongo_atlas: process.env.MONGO_URL_ATLAS,
-  dbName: process.env.DB_NAME,
-};
+export const JWT_CLIENT_ID = process.env.JWT_CLIENT_ID;
+export const JWT_CLIENT_SECRET = process.env.JWT_CLIENT_SECRET;
+export const SECRET_PASS = process.env.SECRET_PASS;
+export const PRIVATE_KEY = process.env.PRIVATE_KEY;
+export const SIGNED_COOKIE_KEY = process.env.SIGNED_COOKIE_KEY;
 
-module.exports = {
-  config,
-  db,
-};
+export const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
+export const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+
+export const PERSISTENCE = process.env.PERSISTENCE;
+
+export const NODEMAILER_USER = process.env.NODEMAILER_USER;
+export const NODEMAILER_PASS = process.env.NODEMAILER_PASS;

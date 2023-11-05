@@ -1,9 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { userModel } = require("../dao/models/user.js");
-const { cartModel } = require("../models/cart.model");
-const { productModel } = require("../models/product.model");
-const { createHash, isValidatePassword } = require("../utils.js");
+import { PRIVATE_KEY, SIGNED_COOKIE_KEY } from "../config/config.js";
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 
