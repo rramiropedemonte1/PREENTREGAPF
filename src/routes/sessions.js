@@ -5,6 +5,13 @@ import { PRIVATE_KEY, SIGNED_COOKIE_KEY } from "../config/config.js";
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 
+export default class appRouter {
+  constructor() {
+    this.router = Router();
+    this.init();
+  }
+}
+
 router.get("/register", (req, res) => {
   try {
     res.render("register.handlebars");
